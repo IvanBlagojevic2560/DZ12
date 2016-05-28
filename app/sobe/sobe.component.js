@@ -51,10 +51,9 @@ System.register(['angular2/core', 'angular2/http', 'angular2/router', 'rxjs/Rx',
                         templateUrl: 'app/sobe/sobe.html',
                         pipes: [search_1.SearchPipe, search2_1.SearchPipe2]
                     }), 
-                    __metadata('design:paramtypes', [(typeof (_a = typeof http_1.Http !== 'undefined' && http_1.Http) === 'function' && _a) || Object, (typeof (_b = typeof router_1.Router !== 'undefined' && router_1.Router) === 'function' && _b) || Object])
+                    __metadata('design:paramtypes', [http_1.Http, router_1.Router])
                 ], Sobe);
                 return Sobe;
-                var _a, _b;
             }());
             exports_1("Sobe", Sobe);
         }

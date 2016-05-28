@@ -1,4 +1,3 @@
-
 import {  Directive } from 'angular2/core';
 import {FormBuilder, Validators, ControlGroup, Control, FORM_DIRECTIVES, FORM_BINDINGS} from 'angular2/common'
 import {Http, HTTP_PROVIDERS, Headers} from 'angular2/http';
@@ -23,8 +22,8 @@ export class FormComponent2 {
  this.http = http;
  this.router = router;
   this.loginForm = builder.group({
-  korisnickoIme: ["", Validators.none],
-  sifra: ["", Validators.none],
+  username: ["", Validators.none],
+  password: ["", Validators.none],
   });
 
   if(localStorage.getItem('token') != null){
@@ -34,7 +33,7 @@ export class FormComponent2 {
   }
   onLogin(): void {
  var data =
- "korisnickoIme="+this.loginForm.value.korisnickoIme+"&sifra="+this.loginForm.value.sifra;
+ "username="+this.loginForm.value.username+"&password="+this.loginForm.value.password;
  var headers = new Headers();
  headers.append('Content-Type', 'application/x-www-form-urlencoded');
  this.http.post('http://localhost/it255/php/loginservice.php',data, {headers:headers})

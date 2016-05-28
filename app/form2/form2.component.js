@@ -33,8 +33,8 @@ System.register(['angular2/common', 'angular2/http', 'rxjs/Rx', 'angular2/router
                     this.http = http;
                     this.router = router;
                     this.loginForm = builder.group({
-                        korisnickoIme: ["", common_1.Validators.none],
-                        sifra: ["", common_1.Validators.none],
+                        username: ["", common_1.Validators.none],
+                        password: ["", common_1.Validators.none],
                     });
                     if (localStorage.getItem('token') != null) {
                         this.router.parent.navigate(['MainPage']);
@@ -42,7 +42,7 @@ System.register(['angular2/common', 'angular2/http', 'rxjs/Rx', 'angular2/router
                 }
                 FormComponent2.prototype.onLogin = function () {
                     var _this = this;
-                    var data = "korisnickoIme=" + this.loginForm.value.korisnickoIme + "&sifra=" + this.loginForm.value.sifra;
+                    var data = "username=" + this.loginForm.value.username + "&password=" + this.loginForm.value.password;
                     var headers = new http_1.Headers();
                     headers.append('Content-Type', 'application/x-www-form-urlencoded');
                     this.http.post('http://localhost/it255/php/loginservice.php', data, { headers: headers })
@@ -68,10 +68,9 @@ System.register(['angular2/common', 'angular2/http', 'rxjs/Rx', 'angular2/router
                         directives: [common_1.FORM_DIRECTIVES],
                         viewBindings: [common_1.FORM_BINDINGS]
                     }), 
-                    __metadata('design:paramtypes', [(typeof (_a = typeof common_1.FormBuilder !== 'undefined' && common_1.FormBuilder) === 'function' && _a) || Object, (typeof (_b = typeof http_1.Http !== 'undefined' && http_1.Http) === 'function' && _b) || Object, (typeof (_c = typeof router_1.Router !== 'undefined' && router_1.Router) === 'function' && _c) || Object])
+                    __metadata('design:paramtypes', [common_1.FormBuilder, http_1.Http, router_1.Router])
                 ], FormComponent2);
                 return FormComponent2;
-                var _a, _b, _c;
             }());
             exports_1("FormComponent2", FormComponent2);
         }

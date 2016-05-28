@@ -33,26 +33,33 @@ System.register(['angular2/common', 'angular2/http', 'rxjs/Rx', 'angular2/router
                     this.http = http;
                     this.router = router;
                     this.registerForm = builder.group({
-                        korisnickoIme: ["", common_1.Validators.none],
-                        sifra: ["", common_1.Validators.none],
-                        ime: ["", common_1.Validators.none],
-                        prezime: ["", common_1.Validators.none],
+                        username: ["", common_1.Validators.none],
+                        password: ["", common_1.Validators.none],
+                        firstName: ["", common_1.Validators.none],
+                        lastName: ["", common_1.Validators.none],
                     });
+                    if (localStorage.getItem('token') != null) {
+                        this.router.parent.navigate(['MainPage']);
+                    }
                 }
                 FormComponent.prototype.onRegister = function () {
                     var _this = this;
-                    var data = "korisnickoIme=" + this.registerForm.value.korisnickoIme + "&sifra=" + this.registerForm.value.sifra + "&ime=" + this.registerForm.value.ime + "&prezime=" + this.registerForm.value.prezime;
+                    var data = "username=" + this.registerForm.value.username + "&password=" + this.registerForm.value.password + "&firstName=" + this.registerForm.value.firstName + "&lastName=" + this.registerForm.value.lastName;
                     var headers = new http_1.Headers();
                     headers.append('Content-Type', 'application/x-www-form-urlencoded');
                     this.http.post('http://localhost/it255/php/registerservice.php', data, { headers: headers })
                         .map(function (res) { return res; })
                         .subscribe(function (data) { return _this.postResponse = data; }, function (err) { return alert(JSON.stringify(err)); }, function () {
-                        if (_this.postResponse._body == "ok") {
-                            alert("Uspesna registracija");
+                        if (_this.postResponse._body.indexOf("error") === -1) {
+                            var obj = JSON.parse(_this.postResponse._body);
+                            localStorage.setItem('token', obj.token);
                             _this.router.parent.navigate(['./MainPage']);
                         }
                         else {
-                            alert("Neuspesna registracija");
+                            var obj = JSON.parse(_this.postResponse._body);
+                            document.getElementsByClassName("alert")[0].style.display = "block";
+                            document.getElementsByClassName("alert")[0].innerHTML =
+                                obj.error.split("\\r\\n").join("<br/>").split("\"").join("");
                         }
                     });
                 };
@@ -63,10 +70,9 @@ System.register(['angular2/common', 'angular2/http', 'rxjs/Rx', 'angular2/router
                         directives: [common_1.FORM_DIRECTIVES],
                         viewBindings: [common_1.FORM_BINDINGS]
                     }), 
-                    __metadata('design:paramtypes', [(typeof (_a = typeof common_1.FormBuilder !== 'undefined' && common_1.FormBuilder) === 'function' && _a) || Object, (typeof (_b = typeof http_1.Http !== 'undefined' && http_1.Http) === 'function' && _b) || Object, (typeof (_c = typeof router_1.Router !== 'undefined' && router_1.Router) === 'function' && _c) || Object])
+                    __metadata('design:paramtypes', [common_1.FormBuilder, http_1.Http, router_1.Router])
                 ], FormComponent);
                 return FormComponent;
-                var _a, _b, _c;
             }());
             exports_1("FormComponent", FormComponent);
         }
