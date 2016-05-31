@@ -1,5 +1,6 @@
 
 
+   
     <nav class="navbar navbar-inverse">
  <div class="container-fluid">
  <div class="navbar-header">
@@ -17,15 +18,15 @@
  <li class="active"><a [routerLink]="['MainPage']">Pocetna</a></li>
  <li class="active"><a [routerLink]="['AboutUs']">Informacije</a></li>
  <li class="active"><a [routerLink]="['Sobe']">Sobe</a></li>
-
-
+ <li *ngIf="isAuth == 'yes'" [class.active]="router.isRouteActive(router.generate(['Form3']))"><a [routerLink]="['Dodaj']">Dodaj sobu</a></li>
  </ul>
 
  <ul class="nav navbar-nav navbar-right">
  <li><a [routerLink]="['FormPage']"><span class="glyphicon glyphicon-user" ></span> Registracija</a></li>
  <li><a [routerLink]="['FormPage2']"><span class="glyphicon glyphicon-log-in"></span>
 Prijavljivanje</a></li>
-<li><a [routerLink]="['./FormPage3']">Dodaj sobu</a></li>
+
+
  </ul>
  </div>
  </div>
