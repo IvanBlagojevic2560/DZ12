@@ -1,0 +1,37 @@
+
+
+    <nav class="navbar navbar-inverse">
+ <div class="container-fluid">
+ <div class="navbar-header">
+ <button type="button" class="navbar-toggle" data-toggle="collapse" datatarget="#myNavbar">
+
+ <span class="icon-bar"></span>
+ <span class="icon-bar"></span>
+ <span class="icon-bar"></span>
+ </button>
+ <a class="navbar-brand" [routerLink]="['MainPage']">MetHotels</a>
+
+ </div>
+ <div class="collapse navbar-collapse" id="myNavbar">
+ <ul class="nav navbar-nav">
+ <li class="active"><a [routerLink]="['MainPage']">Pocetna</a></li>
+ <li class="active"><a [routerLink]="['AboutUs']">Informacije</a></li>
+ <li class="active"><a [routerLink]="['Sobe']">Sobe</a></li>
+ <li *ngIf="isAuth == 'yes'" [class.active]="router.isRouteActive(router.generate(['Form3']))"><a [routerLink]="['Dodaj']">Dodaj sobu</a></li>
+<li *ngIf="isAuth == 'yes'" [class.active]="router.isRouteActive(router.generate(['Form4']))"><a [routerLink]="['Dodaj']">Dodaj sobu</a></li>
+
+ </ul>
+
+ <ul class="nav navbar-nav navbar-right">
+ <li><a [routerLink]="['FormPage']"><span class="glyphicon glyphicon-user" ></span> Registracija</a></li>
+ <li><a [routerLink]="['FormPage2']"><span class="glyphicon glyphicon-log-in"></span>
+Prijavljivanje</a></li>
+
+
+ </ul>
+ </div>
+ </div>
+</nav>
+<div class="container">
+<router-outlet></router-outlet>
+</div>
